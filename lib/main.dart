@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:mvvm_pattren/utils/routes/routes.dart';
 import 'package:mvvm_pattren/utils/routes/routes_name.dart';
 import 'package:mvvm_pattren/view_model/auth_view_model.dart';
+import 'package:mvvm_pattren/view_model/login_view_model.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => AuthViewModel()),
+        ChangeNotifierProvider(create: (_) => LogInViewModel()),
       ],
       child: const GetMaterialApp(
         title: "MVVM",
-        initialRoute: RoutesName.login,
+        initialRoute: RoutesName.splash,
         onGenerateRoute: Routes.generateRout,
       ),
     );

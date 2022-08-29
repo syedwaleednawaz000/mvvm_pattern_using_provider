@@ -1,21 +1,21 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:mvvm_pattren/res/components/round_button.dart';
-import 'package:mvvm_pattren/utils/routes/routes.dart';
-import 'package:mvvm_pattren/utils/utils.dart';
-import 'package:mvvm_pattren/view_model/auth_view_model.dart';
 import 'package:provider/provider.dart';
 
+import '../res/components/round_button.dart';
 import '../utils/routes/routes_name.dart';
+import '../utils/utils.dart';
+import '../view_model/auth_view_model.dart';
 
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({Key? key}) : super(key: key);
+class SignUpView extends StatefulWidget {
+  const SignUpView({Key? key}) : super(key: key);
 
   @override
-  State<LogInScreen> createState() => _LogInScreenState();
+  State<SignUpView> createState() => _SignUpViewState();
 }
 
-class _LogInScreenState extends State<LogInScreen> {
+class _SignUpViewState extends State<SignUpView> {
+
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   FocusNode emailFocusNode = FocusNode();
@@ -29,7 +29,6 @@ class _LogInScreenState extends State<LogInScreen> {
     passwordController.dispose();
     passwordFocusNode.dispose();
   }
-
   @override
   Widget build(BuildContext context) {
     final authViewModel = Provider.of<AuthViewModel>(context);
@@ -39,7 +38,7 @@ class _LogInScreenState extends State<LogInScreen> {
         appBar: AppBar(
           elevation: 0,
           title: const Text(
-            "MVVM Login",
+            "MVVM SignUp",
             style: TextStyle(color: Colors.black),
           ),
           backgroundColor: Colors.white,
@@ -96,8 +95,8 @@ class _LogInScreenState extends State<LogInScreen> {
                 height: height * 0.09,
               ),
               RoundButton(
-                title: "LogIn",
-                loading: authViewModel.logInLoading,
+                title: "SignUp",
+                loading: authViewModel.signUploading,
                 onPress: () {
                   if (emailController.text.isEmpty &&
                       passwordController.text.isEmpty) {
@@ -121,7 +120,7 @@ class _LogInScreenState extends State<LogInScreen> {
                       'email': emailController.text.toString(),
                       'password': emailController.text.toString(),
                     };
-                    authViewModel.logInApi(context: context, data: data);
+                    authViewModel.signUpApi(context: context, data: data);
                     if (kDebugMode) {
                       // print("API HIT");
                     }
@@ -131,8 +130,8 @@ class _LogInScreenState extends State<LogInScreen> {
               ),
               const SizedBox(height: 10,),
               TextButton(onPressed: (){
-                Navigator.pushNamed(context, RoutesName.signup);
-              }, child: const Text("don't have an account? SignUp"))
+                Navigator.pushNamed(context, RoutesName.login);
+              }, child: const Text("Already have an account? Login"))
             ],
           ),
         ),

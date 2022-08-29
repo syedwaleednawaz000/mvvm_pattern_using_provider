@@ -21,7 +21,7 @@ class RoundButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
         ),
         child: Center(
-          child: loading ? CircularProgressIndicator():Text("LogIn",style: TextStyle(color: AppColors.whiteColor),),
+          child: loading ? CircularProgressIndicator():Text(title,style: TextStyle(color: AppColors.whiteColor),),
         ),
       ),
     );
