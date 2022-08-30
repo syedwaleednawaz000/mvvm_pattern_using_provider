@@ -9,9 +9,9 @@ class ApiResponse<T> {
 
   ApiResponse.loading() : status = Status.LAODING;
 
-  ApiResponse.completed() : status = Status.COMPLETED;
+  ApiResponse.completed(data) : status = Status.COMPLETED;
 
-  ApiResponse.error() : status = Status.ERROR;
+  ApiResponse.error(message) : status = Status.ERROR;
   @override
   String toString(){
     return "Status : $status \n Message $message \n Data $data ";
